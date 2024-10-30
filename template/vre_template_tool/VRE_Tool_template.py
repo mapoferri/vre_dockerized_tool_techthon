@@ -29,6 +29,7 @@ class myTool(Tool):
     """
     """
     DEFAULT_KEYS = ['execution', 'project', 'description']
+    PYTHON_SCRIPT_PATH = "/your-script.py"
     """config.json default keys"""
 
     def __init__(self, configuration=None):
@@ -93,12 +94,11 @@ class myTool(Tool):
             output_type = output_metadata[0]['file']['file_type'].lower()
             
             # Tool Execution
-            self.run_my_demo_pipeline(input_files,output_file_path)
+            self.toolExecution(input_files,output_file_path)
             #HERE GOES YOUR TOOL'S FUNCTION EXECUTION
 
             # Validate output 
             if os.path.isfile(output_file_path):
-                output_file_path= os.path.abspath(self.execution_path + "/" + output_file_path)
                 output_files[output_id] = [(output_file_path, "file")]
 
                 return output_files, output_metadata
@@ -114,7 +114,7 @@ class myTool(Tool):
             logger.fatal(errstr)
             raise Exception(errstr)
 
-    def run_my_demo_pipeline(self, input_files, output_file_path):
+    def toolExecution(self, input_files, output_file_path):
         """
         The main function to run the pipeline. THIS IS WHERE YOUR CMD FOR THE DOCKER IMAGE SHOULD BE RUN
 
@@ -124,6 +124,21 @@ class myTool(Tool):
         rc = None
 
         try:
+
+
+            # Get input files
+            input_file_1 = input_files.get('input_file_1')
+            if not os.path.isabs(input_file_1):
+                input_file_1 = os.path.normpath(os.path.join(self.parent_dir, input_file_1))
+
+            # TODO: add more input files to use, if it is necessary for you
+
+            # Get arguments
+            argument_1 = self.arguments.get('your_arg')
+            if argument_1 is None:
+                errstr = "your_args must be defined."
+                logger.fatal(errstr)
+                raise Exception(errstr)
             ###
             ### Call Application
             print('\n-- Input data:')
@@ -134,10 +149,12 @@ class myTool(Tool):
             print(os.getcwd())
             print("\n-- Expected output is:")
             print(output_file_path)
+            
             cmd = [
-                'bash', '/home/my_demo_pipeline.sh', output_file_path 
+                'bash', '/home/demo_pipeline.sh', output_file_path 
             ]
-            print("\n-- Starting the Demo pipeline")
+            
+            print("\n-- Starting the Demo")
             print(cmd)
             
             process = subprocess.Popen(cmd, stdout=subprocess.PIPE,stderr=subprocess.STDOUT) # stderr=subprocess.PIPE
