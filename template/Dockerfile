@@ -1,7 +1,5 @@
 #INTEGRATE NEW TOOL CONTAINER
-FROM your-tool-image
-
-#FROM mapoferri/seqio-tool:latest
+FROM mapoferri/seqio-tool:latest
 
 
 #---------- DO NOT EDIT BELOW HERE ------------------------------------------------------------# 

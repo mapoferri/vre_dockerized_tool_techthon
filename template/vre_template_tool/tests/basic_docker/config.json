@@ -1,5 +1,17 @@
 {
     "input_files": [
+	    {
+            "name": "input_fasta",
+            "value": "unique_file_id_5e14abe0a37012.29503907",
+            "required": true,
+            "allow_multiple": false
+        },
+        {
+            "name": "ids_txt",
+            "value": "unique_file_id_5e14abe0a37012.29503908",
+            "required": true,
+            "allow_multiple": false
+        }
     ],
     "arguments": [
         {
@@ -15,24 +27,24 @@
             "value": "test"
         },
         {
-            "name": "argument_name",
-            "value": "Random String"
+            "name": "min_lenght",
+            "value": "50"
         }
     ],
     "output_files": [
         {
-            "name": "my_demo_outfile",
+            "name": "output_fasta",
             "required": true,
             "allow_multiple": false,
             "file": {
-                "file_type": "TXT",
-                "data_type": "sample_information_file",
+                "file_type": "FASTA",
+                "data_type": "result",
                 "meta_data": {
                     "visible": true,
-                    "tool": "demo_tool",
-                    "description": "Demo TXT output file."
+                    "tool": "seqio_tool",
+                    "description": "Demo output file."
                 },
-                "file_path": "my_demo_outfile.txt"
+                "file_path": "/shared_data/public_tmp/outputfasta.fasta"
             }
         }
     ]}

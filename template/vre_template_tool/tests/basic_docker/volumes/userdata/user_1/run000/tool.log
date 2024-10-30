@@ -1,26 +1,22 @@
-2023-01-26 12:06:25 | INFO: 0) Unpack information from JSON
-2023-01-26 12:06:25 | INFO: 1) Instantiate and Configure Tool
-2023-01-26 12:06:25 | INFO: 2) Run Tool
+2024-10-29 20:16:55 | INFO: 0) Unpack information from JSON
+2024-10-29 20:16:55 | INFO: 1) Instantiate and Configure Tool
+2024-10-29 20:16:55 | INFO: 2) Run Tool
 
 -- Input data:
-{}
+{'input_fasta': '/shared_data/public_tmp/fasta_file.txt', 'ids_txt': '/shared_data/public_tmp/ids.txt'}
 
 -- Arguments:
-{'execution': '/shared_data/userdata/user_1/run000', 'project': 'example', 'description': 'test', 'argument_name': 'Random String'}
+{'execution': '/shared_data/userdata/user_1/run000', 'project': 'example', 'description': 'test', 'min_lenght': '50'}
 
 -- CWD:
 /shared_data/userdata/user_1/run000
 
 -- Expected output is:
-my_dummy_outfile.txt
+/shared_data/public_tmp/outputfasta.fasta
 
--- Starting the Dummy pipeline
-['bash', '/home/my_dummy_pipeline.sh', 'my_dummy_outfile.txt']
-
--- Check files in the directory
-['in_metadata.json', 'tool.log', 'config.json']
-/shared_data/userdata/user_1/run000
-2023-01-26 12:06:25 | PROGRESS: The execution finished successfully - FINISHED
-2023-01-26 12:06:25 | INFO: 3) Create information
-2023-01-26 12:06:25 | INFO: 4) Pack information to JSON
-2023-01-26 12:06:25 | PROGRESS: <myTool> tool successfully executed; see /shared_data/userdata/user_1/run000/out_metadata.json
+-- Starting the Demo pipeline
+['python3', '/home/vre_template_tool/../seqio_tool/extract_sequences.py', '/shared_data/public_tmp/fasta_file.txt', '/shared_data/public_tmp/ids.txt', '/shared_data/public_tmp/outputfasta.fasta', '50']
+2024-10-29 20:16:56 | PROGRESS: The execution finished successfully - FINISHED
+2024-10-29 20:16:56 | INFO: 3) Create information
+2024-10-29 20:16:56 | INFO: 4) Pack information to JSON
+2024-10-29 20:16:56 | PROGRESS: <myTool> tool successfully executed; see /shared_data/userdata/user_1/run000/out_metadata.json
